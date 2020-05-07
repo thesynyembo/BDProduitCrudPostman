@@ -54,9 +54,14 @@ app.post('/api/produits',(req,res)=>{
 app.put('/api/produits/:id',(req,res)=>{
     connection.query(`UPDATE Produit Set nom="${req.body.nom}", quantite="${req.body.quantite}",prixUHT="${req.body.prixUHT}" where id=${req.params.id}`,(erreur,resultat)=>
     { if(erreur) throw erreur;
+        return res.send(resultat);});
+});
+// Delete
+app.delete('/api/produits/:id',(req,res)=>{
+    connection.query(`DELETE from Produit where id=${req.params.id}`,(erreur,resultat)=>
+    { if(erreur) throw erreur;
         return res.send(resultat);})
 })
-
 
 
 
